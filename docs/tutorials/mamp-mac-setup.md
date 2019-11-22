@@ -1,17 +1,17 @@
-## Setting up wp-browser with MAMP to test a plugin on Mac
+## Setting up wp-browser with MAMP on Mac to test a plugin
 
 ## Requirements
 
 * A Mac machine
-* A working installation of [MAMP](!g mamp)
-* you should be able to create sites and visit them from your browser without issues
+* A working installation of [MAMP][0967-0001]
+* You should be able to create sites and visit them from your browser without issues.
 * [Composer](https://getcomposer.org/) installed and working on your terminal `PATH`, you should be able to run `composer --version` at the terminal and see the version correctly.
 
 > The version of MAMP used in this tutorial is the free, non PRO, one. MAMP PRO provides more features, but the setup instructions should remain valid.
 
-## Check VVV works correctly
+## Install and configure MAMP
 
-This walk-through starts after MAMP has been installed and is correctly running on the host machine; you can [download MAMP from the site](!g mamp download) and follow the installation instructions.  
+This walk-through starts after MAMP has been installed and is correctly running on the host machine; you can [download MAMP from the site][0967-0002] and follow the installation instructions.  
 In the context of this guide I'm assuming the "Document Root" directory is the default one, in the `/Applications/MAMP/htdocs` directory.  
 If your document root lies elsewhere, replace the `/Applications/MAMP/htdocs` path with the actual directory in each command.  
 
@@ -28,7 +28,7 @@ Go to the `http://localhost/phpMyAdmin/` page and create two new databases:
 
 ![](images/mamp-create-db.png)
 
-Unzip the the WordPress files into the `/Applications/MAMP/htdocs` and head over at `http://localhost` to install WordPress.  
+Unzip the the WordPress files into the `/Applications/MAMP/htdocs` and head over to `http://localhost` to install WordPress.  
 
 The database credentials for the installation are:
 
@@ -134,8 +134,8 @@ vendor/bin/codecept init wpbrowser
 The initialization guide will ask a number of questions.  
 In the screenshots below are the answers I used to configure `wp-browser`.
 
-![](images/mamp-wp-browser-init-1.png)
-![](images/mamp-wp-browser-init-2.png)
+![](images/mamp-wpbrowser-init-1.png)
+![](images/mamp-wpbrowser-init-2.png)
 
 Below a complete list of each answer:
 
@@ -181,8 +181,6 @@ In the case of a plugin the minimal, starting environment is the following:
 You should set up this fixture "manually", using the site administration UI at `http://localhost/wp-admin`.
 
 > The following command will **empty the site, backup any content you care about first!**
-
-As it's been the case so far, I'm running the following command from **within the VVV box** (use `vagrant ssh` to log in):
 
 When you're done setting up the initial database fixture, export it using the "Export" tab of phpMyAdmin, at `http://localhost/phpMyAdmin/` and move the file to the `/Applications/MAMP/htdocs/wp-content/plugins/my-plugin/tests/_data/dump.sql` directory.
 
@@ -253,3 +251,6 @@ vendor/bin/codecept run unit
 ```
  
 You're now run to customize the suites to your liking or start writing tests, run `vendor/bin/codecept` to see a list of the available commands.
+
+[0967-0001]: https://www.mamp.info/
+[0967-0002]: https://www.mamp.info/en/downloads/
